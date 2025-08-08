@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PatrolController : MonoBehaviour
 {
+
     public enum EnemyState { Patrol, Chase }
     private EnemyState currentState;
 
