@@ -8,11 +8,11 @@ public class PlayerAnimationController : MonoBehaviour
 {
     private Animator anim;
     private NavMeshAgent agent;
-    private PlayerMovementController playerMovement;
+    private PlayerMovement playerMovement;
 
     private void Awake()
     {
-        playerMovement = GetComponentInParent<PlayerMovementController>();
+        playerMovement = GetComponentInParent<PlayerMovement>();
         agent = GetComponentInParent<NavMeshAgent>();
         anim = GetComponent<Animator>();
     }

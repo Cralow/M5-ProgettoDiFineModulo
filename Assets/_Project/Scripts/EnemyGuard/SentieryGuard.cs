@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SentieryGuard : MonoBehaviour
+public class SentieryGuard : MonoBehaviour//logica bizzarra devi rifare tutto più semplice 
 {
     [SerializeField] private float rotationAngle = 45f;
     [SerializeField] private float rotationSpeed = 90f;
     [SerializeField] private float waitTime = 0.5f;
     [SerializeField] private float snap = 0.1f; 
+    //camera view angle 
 
-    private void Start()
+    //Enumerator 
+    private void Awake()
     {
         StartCoroutine(RotationLoop());
     }
