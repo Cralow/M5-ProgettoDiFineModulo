@@ -14,7 +14,7 @@ public class PatrolController : MonoBehaviour
     public bool loop = true;
 
     [Header("Chase Settings")]
-    public float detectionRadius = 10f;
+    public bool canSeePlayer;
     public float loseTargetTime = 3f;
 
     private NavMeshAgent agent;
@@ -68,7 +68,7 @@ public class PatrolController : MonoBehaviour
 
     void UpdatePatrolState()
     {
-        if (CanSeePlayer())
+        if (canSeePlayer)
         {
             EnterState(EnemyState.Chase);
             return;
@@ -88,7 +88,7 @@ public class PatrolController : MonoBehaviour
 
         agent.SetDestination(player.position);
 
-        if (CanSeePlayer())
+        if (canSeePlayer)
         {
             timeSinceLastSeen = 0f;
         }
@@ -117,11 +117,6 @@ public class PatrolController : MonoBehaviour
         waiting = false;
     }
 
-    bool CanSeePlayer()
-    {
-        float distance = Vector3.Distance(transform.position, player.position);
-        return distance <= detectionRadius;
-    }
 
     public void GoToClosestPatrolPoint()
     {
@@ -144,9 +139,4 @@ public class PatrolController : MonoBehaviour
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
 }
