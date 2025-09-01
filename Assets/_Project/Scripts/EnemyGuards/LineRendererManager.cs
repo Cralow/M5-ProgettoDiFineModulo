@@ -9,7 +9,6 @@ public class LineRendererManager : MonoBehaviour
     private GuardController controller;
     private GuardChaseState chaseState;
 
-    [SerializeField] private float radius = 10f;
     [SerializeField] private float distance = 8f;
     [Range(0f, 360f)] public float angle = 90f;
 

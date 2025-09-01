@@ -6,6 +6,7 @@ public class GuardController : MonoBehaviour
 {
     private GuardChaseState chaseState;
     private GuardPatrolState patrolState;
+    private GuardRotateState rotateState;
     public enum EnemyStates { Patrol, Chase }
     public EnemyStates currentState;
 
@@ -13,6 +14,7 @@ public class GuardController : MonoBehaviour
     private void Awake()
     {
         patrolState = GetComponent<GuardPatrolState>();
+        rotateState = GetComponent<GuardRotateState>();
         chaseState = GetComponent<GuardChaseState>();
     }
     private void Update()
@@ -25,8 +27,15 @@ public class GuardController : MonoBehaviour
         switch (currentState)
         {
             case EnemyStates.Patrol:
-                patrolState.UpdatePatrolState();
-                break;
+                if (patrolState != null)
+                {
+                  patrolState.UpdatePatrolState();
+                }
+                else
+                {
+                    rotateState.UpdateGuardState();
+                }
+                    break;
             case EnemyStates.Chase:
                 chaseState.ChasePlayer();
                 break;
