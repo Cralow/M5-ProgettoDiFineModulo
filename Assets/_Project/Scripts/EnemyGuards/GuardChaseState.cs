@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static PatrolController;
 
 public class GuardChaseState : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class GuardChaseState : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+        controller = GetComponent<GuardController>();
     }
     public void ChasePlayer()
     {
@@ -33,7 +33,7 @@ public class GuardChaseState : MonoBehaviour
             if (timeSinceLastSeen >= loseTargetTime)
             {
                 canSeePlayer = false;
-                controller.currentState = EnemyState.Patrol;
+                controller.EnterState(GuardController.EnemyStates.Patrol);
 
             }
         }

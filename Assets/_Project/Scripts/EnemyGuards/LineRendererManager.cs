@@ -59,6 +59,7 @@ public class LineRendererManager : MonoBehaviour
             else if (Physics.Raycast(origin, dir, out hit, maxDist, targetMask))
             {
                 end = hit.point;
+                controller.EnterState(GuardController.EnemyStates.Chase);
                 chaseState.canSeePlayer = true;
             }
 

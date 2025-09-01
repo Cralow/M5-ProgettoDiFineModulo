@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PatrolController;
 
 public class GuardController : MonoBehaviour
 {
     private GuardChaseState chaseState;
     private GuardPatrolState patrolState;
-    public EnemyState currentState;
+    public enum EnemyStates { Patrol, Chase }
+    public EnemyStates currentState;
 
 
     private void Awake()
@@ -24,15 +24,17 @@ public class GuardController : MonoBehaviour
     {
         switch (currentState)
         {
-            case EnemyState.Patrol:
+            case EnemyStates.Patrol:
                 patrolState.UpdatePatrolState();
                 break;
-            case EnemyState.Chase:
-                patrolState.StopCoroutine(patrolState.Patrol);
+            case EnemyStates.Chase:
                 chaseState.ChasePlayer();
                 break;
         }
     }
-
+    public void EnterState(EnemyStates enemyState)
+    {
+        currentState = enemyState;
+    }
 
 }
