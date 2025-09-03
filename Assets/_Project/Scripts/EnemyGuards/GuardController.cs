@@ -33,6 +33,7 @@ public class GuardController : MonoBehaviour
                 }
                 else
                 {
+                    rotateState.GoToCheckPoint();
                     rotateState.UpdateGuardState();
                 }
                     break;
